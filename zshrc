@@ -5,7 +5,11 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="gentoo"
+SMTH_COLOR=${SMTH_COLOR:-green}
+
+SMTH_USE_GIT=${SMTH_USE_GIT:-}
+
+ZSH_THEME=${ZSH_THEME:-smth}
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -49,14 +53,11 @@ ZSH_THEME="gentoo"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git,vagrant,ubuntu,virtualenv)
+plugins=()
 
 # User configuration
 
-export PATH="$HOME/.node_modules_global/bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
-
-export NODE_PATH="$HOME/.node_modules_global"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -85,15 +86,27 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# my aliases
+alias now='date +"%Y-%m-%d--%H-%M-%S"'
+alias ls='ls --group-directories-first --time-style=+"%Y-%m-%d--%H-%M-%S" --color=auto'
+alias free-caches="sudo -- sh -c 'free && sync && echo 3 > /proc/sys/vm/drop_caches && free'"
+
 setopt hist_ignore_all_dups
 
-if [ -e /etc/zsh_command_not_found ]; then
-  source /etc/zsh_command_not_found
-fi
+# if command not found
+[[ -e /etc/zsh_command_not_found ]] && source /etc/zsh_command_not_found
 
-alias now='date +"%y-%m-%d--%H-%M-%S"'
-alias ls='ls --group-directories-first --time-style=+"%y-%m-%d--%H-%M-%S" --color=auto'
+# my local binaries
+[[ -d "$HOME/.local/bin" ]] && export PATH="$PATH:$HOME/.local/bin"
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
+# rvm stuff
+[[ -d "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source $HOME/.rvm/scripts/rvm
+
+# nodejs stuff
+[[ -d "$HOME/.node_modules_global" ]] && export NODE_PATH="$HOME/.node_modules_global"
+[[ -d "$HOME/.node_modules_global/bin" ]] && export PATH="$HOME/.node_modules_global/bin:$PATH"
+
+# golang stuff
+export GOPATH=$HOME/.golang
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin

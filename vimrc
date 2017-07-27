@@ -1,94 +1,108 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+try
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+  " set the runtime path to include Vundle and initialize
+  set rtp+=~/.vim/bundle/Vundle.vim
+  call vundle#begin()
+  " alternatively, pass a path where Vundle should install plugins
+  "call vundle#begin('~/some/path/here')
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-"Plugin 'ascenator/L9', {'name': 'newL9'}
+  " let Vundle manage Vundle, required
+  Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'tpope/vim-vividchalk'
+  " The following are examples of different formats supported.
+  " Keep Plugin commands between vundle#begin/end.
+  " plugin on GitHub repo
+  Plugin 'tpope/vim-fugitive'
+  " plugin from http://vim-scripts.org/vim/scripts.html
+  Plugin 'L9'
+  " Git plugin not hosted on GitHub
+  "Plugin 'git://git.wincent.com/command-t.git'
+  " git repos on your local machine (i.e. when working on your own plugin)
+  "Plugin 'file:///home/gmarik/path/to/plugin'
+  " The sparkup vim script is in a subdirectory of this repo called vim.
+  " Pass the path to set the runtimepath properly.
+  "Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+  " Install L9 and avoid a Naming conflict if you've already installed a
+  " different version somewhere else.
+  "Plugin 'ascenator/L9', {'name': 'newL9'}
 
-Plugin 'Lokaltog/vim-powerline'
+  Plugin 'tpope/vim-vividchalk'
 
-Plugin 'jpalardy/spacehi.vim'
+  Plugin 'Lokaltog/vim-powerline'
 
-Plugin 'evanmiller/nginx-vim-syntax'
+  Plugin 'jpalardy/spacehi.vim'
 
-Plugin 'leafgarland/typescript-vim'
+  Plugin 'evanmiller/nginx-vim-syntax'
 
-Plugin 'scrooloose/nerdtree'
+  Plugin 'leafgarland/typescript-vim'
 
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+  Plugin 'scrooloose/nerdtree'
 
-Plugin 'airblade/vim-gitgutter'
+  Plugin 'Xuyuanp/nerdtree-git-plugin'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
+  Plugin 'airblade/vim-gitgutter'
+
+  " All of your Plugins must be added before the following line
+  call vundle#end()            " required
+  filetype plugin indent on    " required
+  " To ignore plugin indent changes, instead use:
+  "filetype plugin on
+
+catch
+endtry
+
+
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
+
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-if has("autocmd")
- au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
-
+" enable syntax highlighting
 syntax on
 
+" line numbers
 set nu
 
+" actually I don't remember what is it
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+" remove trailing spaces on save
 autocmd BufWritePre * :%s/\s\+$//e
 
+" colorscheme
 set t_Co=256
-colorscheme vividchalk
+colorscheme elflord
+if !empty(globpath(&rtp, 'colors/vividchalk.vim'))
+  colorscheme vividchalk
+endif
 
+" spacehi
 let g:spacehi_tabcolor="ctermfg=White ctermbg=Blue guifg=White guibg=Blue"
 let g:spacehi_spacecolor="ctermfg=Black ctermbg=Yellow guifg=Blue guibg=Yellow"
 let g:spacehi_nbspcolor="ctermfg=White ctermbg=Red guifg=White guibg=Red"
-autocmd syntax * SpaceHi
+try
+  autocmd syntax * SpaceHi
+catch
+endtry
 
-set sw=4 ts=4 sts=4 et
-
+" status bar
 set laststatus=2
 
+" indentation parameters
+set sw=2 ts=2 sts=2 et
 autocmd BufRead,BufNewFile /etc/nginx/* set ft=nginx
-autocmd FileType ruby setl sw=2 ts=2 sts=2 et
-autocmd FileType yaml setl sw=2 ts=2 sts=2 et
+autocmd FileType php setl sw=4 ts=4 sts=4 et
 autocmd FileType go setl sw=4 ts=4 sts=4 noet
 
 "autocmd vimenter * NERDTree
 map <F4> :NERDTreeToggle<CR>
 
-" save from insert mode
-inoremap <F5> <C-O>:w<CR>
-" write and exit from insert mode
-inoremap <F10> <C-O>:wqa<CR>
