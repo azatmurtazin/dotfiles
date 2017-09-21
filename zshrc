@@ -100,12 +100,12 @@ setopt hist_ignore_all_dups
 [[ -d "$HOME/.local/bin" ]] && export PATH="$PATH:$HOME/.local/bin"
 
 # rvm stuff
-[[ -d "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source $HOME/.rvm/scripts/rvm
+#[[ -d "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin"
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source $HOME/.rvm/scripts/rvm
 
 # nodejs stuff
 [[ -d "$HOME/.node_modules_global" ]] && export NODE_PATH="$HOME/.node_modules_global"
-[[ -d "$HOME/.node_modules_global/bin" ]] && export PATH="$HOME/.node_modules_global/bin:$PATH"
+[[ -d "$HOME/.node_modules_global/bin" ]] && export PATH="$PATH:$HOME/.node_modules_global/bin"
 
 # golang stuff
 export GOPATH=$HOME/.golang
