@@ -35,7 +35,7 @@ try
 
   Plugin 'jpalardy/spacehi.vim'
 
-  Plugin 'evanmiller/nginx-vim-syntax'
+  Plugin 'chr4/nginx.vim'
 
   Plugin 'leafgarland/typescript-vim'
 
