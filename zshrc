@@ -90,6 +90,7 @@ source $ZSH/oh-my-zsh.sh
 alias now='date +"%Y-%m-%d--%H-%M-%S"'
 alias ls='ls --group-directories-first --time-style=+"%Y-%m-%d--%H-%M-%S" --color=auto'
 alias free-caches="sudo -- sh -c 'free && sync && echo 3 > /proc/sys/vm/drop_caches && free'"
+alias obnovit="sudo -- sh -c 'apt update; apt-get dist-upgrade -y; apt autoremove -y; apt clean'"
 
 setopt hist_ignore_all_dups
 
