@@ -53,7 +53,7 @@ ZSH_THEME=${ZSH_THEME:-smth}
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=()
+plugins=(mix)
 
 # User configuration
 
@@ -111,3 +111,6 @@ setopt hist_ignore_all_dups
 # golang stuff
 export GOPATH=$HOME/.golang
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+# added by travis gem
+[ -f /home/burz/.travis/travis.sh ] && source /home/burz/.travis/travis.sh
