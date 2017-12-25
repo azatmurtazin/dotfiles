@@ -112,5 +112,13 @@ setopt hist_ignore_all_dups
 export GOPATH=$HOME/.golang
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
+[[ -d "$HOME/.linuxbrew/bin" ]] && export PATH="$HOME/.linuxbrew/bin:$PATH"
+
 # added by travis gem
-[ -f /home/burz/.travis/travis.sh ] && source /home/burz/.travis/travis.sh
+[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
+
+#export PATH="$HOME/.rbenv/bin:$PATH"
+#eval "$(rbenv init -)"
+
+[[ -d "$HOME/.asdf" ]] && source $HOME/.asdf/asdf.sh
+[[ -d "$HOME/.asdf" ]] && source $HOME/.asdf/completions/asdf.bash
