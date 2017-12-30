@@ -106,7 +106,7 @@ setopt hist_ignore_all_dups
 
 # nodejs stuff
 [[ -d "$HOME/.node_modules_global" ]] && export NODE_PATH="$HOME/.node_modules_global"
-[[ -d "$HOME/.node_modules_global/bin" ]] && export PATH="$PATH:$HOME/.node_modules_global/bin"
+[[ -d "$HOME/.node_modules_global/bin" ]] && export PATH="$HOME/.node_modules_global/bin:$PATH"
 
 # golang stuff
 export GOPATH=$HOME/.golang
