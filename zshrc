@@ -53,7 +53,7 @@ ZSH_THEME=${ZSH_THEME:-smth}
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(mix)
+plugins=(mix asdf nvm)
 
 # User configuration
 
@@ -122,3 +122,5 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 [[ -d "$HOME/.asdf" ]] && source $HOME/.asdf/asdf.sh
 [[ -d "$HOME/.asdf" ]] && source $HOME/.asdf/completions/asdf.bash
+
+[[ -d "$HOME/.nvm" ]] && source $HOME/.nvm/nvm.sh
