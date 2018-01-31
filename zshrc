@@ -53,7 +53,7 @@ ZSH_THEME=${ZSH_THEME:-smth}
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(mix asdf nvm)
+plugins=(mix asdf nvm vagrant)
 
 # User configuration
 
