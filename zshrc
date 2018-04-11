@@ -53,7 +53,7 @@ ZSH_THEME=${ZSH_THEME:-smth}
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(mix asdf nvm vagrant)
+plugins=(mix asdf nvm vagrant bundle)
 
 # User configuration
 
@@ -90,7 +90,26 @@ source $ZSH/oh-my-zsh.sh
 alias now='date +"%Y-%m-%d--%H-%M-%S"'
 alias ls='ls --group-directories-first --time-style=+"%Y-%m-%d--%H-%M-%S" --color=auto'
 alias free-caches="sudo -- sh -c 'free && sync && echo 3 > /proc/sys/vm/drop_caches && free'"
-alias obnovit="sudo -- sh -c 'apt update; apt-get dist-upgrade -y; apt autoremove -y; apt clean'"
+
+obnovit() {
+  if hash yaourt 2>/dev/null; then
+    echo 'obnovit via yaourt'
+    yaourt -Syyu
+  elif hash yum 2>/dev/null; then
+    echo 'obnovit via yum'
+    sudo yum update -y
+  elif hash apt 2>/dev/null; then
+    echo 'obnovit via apt'
+    sudo -- sh -c '
+      apt update
+      apt-get dist-upgrade -y
+      apt autoremove -y
+      apt clean
+    '
+  else
+    echo "Dunno how to obnovit"
+  fi
+}
 
 setopt hist_ignore_all_dups
 
@@ -124,3 +143,4 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 [[ -d "$HOME/.asdf" ]] && source $HOME/.asdf/completions/asdf.bash
 
 [[ -d "$HOME/.nvm" ]] && source $HOME/.nvm/nvm.sh
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
