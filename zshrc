@@ -144,3 +144,7 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 [[ -d "$HOME/.nvm" ]] && source $HOME/.nvm/nvm.sh
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/azat/.sdkman"
+[[ -s "/home/azat/.sdkman/bin/sdkman-init.sh" ]] && source "/home/azat/.sdkman/bin/sdkman-init.sh"
