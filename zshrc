@@ -136,8 +136,11 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 # added by travis gem
 [ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
 
-#export PATH="$HOME/.rbenv/bin:$PATH"
-#eval "$(rbenv init -)"
+if [ -d "$HOME/.rbenv" ]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+  source ~/.rbenv/completions/rbenv.zsh
+fi
 
 [[ -d "$HOME/.asdf" ]] && source $HOME/.asdf/asdf.sh
 [[ -d "$HOME/.asdf" ]] && source $HOME/.asdf/completions/asdf.bash
