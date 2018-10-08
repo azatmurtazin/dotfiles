@@ -53,7 +53,7 @@ ZSH_THEME=${ZSH_THEME:-smth}
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(mix asdf nvm vagrant bundle)
+plugins=(mix asdf nvm vagrant bundler)
 
 # User configuration
 
@@ -90,6 +90,7 @@ source $ZSH/oh-my-zsh.sh
 alias now='date +"%Y-%m-%d--%H-%M-%S"'
 alias ls='ls --group-directories-first --time-style=+"%Y-%m-%d--%H-%M-%S" --color=auto'
 alias free-caches="sudo -- sh -c 'free && sync && echo 3 > /proc/sys/vm/drop_caches && free'"
+alias rg='rg --smart-case --no-heading --sort path'
 
 obnovit() {
   if hash yaourt 2>/dev/null; then
@@ -147,6 +148,9 @@ fi
 
 [[ -d "$HOME/.nvm" ]] && source $HOME/.nvm/nvm.sh
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# snap
+export PATH=$PATH:/snap/bin
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/azat/.sdkman"
