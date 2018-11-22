@@ -155,3 +155,5 @@ export PATH=$PATH:/snap/bin
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/azat/.sdkman"
 [[ -s "/home/azat/.sdkman/bin/sdkman-init.sh" ]] && source "/home/azat/.sdkman/bin/sdkman-init.sh"
+
+:
