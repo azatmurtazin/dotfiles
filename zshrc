@@ -90,7 +90,9 @@ source $ZSH/oh-my-zsh.sh
 alias now='date +"%Y-%m-%d--%H-%M-%S"'
 alias ls='ls --group-directories-first --time-style=+"%Y-%m-%d--%H-%M-%S" --color=auto'
 alias free-caches="sudo -- sh -c 'free && sync && echo 3 > /proc/sys/vm/drop_caches && free'"
-alias rg='rg --smart-case --no-heading --sort path'
+alias rg='rg --smart-case --no-heading --sort-files '
+alias install-new-ssl='sudo apt-get install libcurl4-openssl-dev libssh-dev libssl-dev'
+alias install-old-ssl='sudo apt-get install libssl1.0-dev'
 
 obnovit() {
   if hash yaourt 2>/dev/null; then

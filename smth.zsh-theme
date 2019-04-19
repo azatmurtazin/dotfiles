@@ -14,6 +14,8 @@ function smth_git_inf {
 
 if [ $SMTH_SHOW_USER -a $SMTH_SHOW_USER != 'no' ]; then
   PROMPT='%(!.%{$fg_bold[red]%}.%{$fg_bold[$SMTH_COLOR]%}%n@)%m '
+else
+  PROMPT=''
 fi
 
 PROMPT+='%{$fg_bold[$SMTH_PATH_COLOR]%}%(!.%1~.%~) $(smth_git_inf)'
