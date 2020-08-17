@@ -53,7 +53,7 @@ ZSH_THEME=${ZSH_THEME:-smth}
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(mix asdf nvm vagrant bundler)
+plugins=(mix asdf vagrant bundler)
 
 # User configuration
 
@@ -91,28 +91,9 @@ alias now='date +"%Y-%m-%d--%H-%M-%S"'
 alias ls='ls --group-directories-first --time-style=+"%Y-%m-%d--%H-%M-%S" --color=auto'
 alias free-caches="sudo -- sh -c 'free && sync && echo 3 > /proc/sys/vm/drop_caches && free'"
 alias rg='rg --smart-case --no-heading --sort-files '
-alias install-new-ssl='sudo apt-get install libcurl4-openssl-dev libssh-dev libssl-dev'
-alias install-old-ssl='sudo apt-get install libssl1.0-dev'
-
-obnovit() {
-  if hash yaourt 2>/dev/null; then
-    echo 'obnovit via yaourt'
-    yaourt -Syyu
-  elif hash yum 2>/dev/null; then
-    echo 'obnovit via yum'
-    sudo yum update -y
-  elif hash apt 2>/dev/null; then
-    echo 'obnovit via apt'
-    sudo -- sh -c '
-      apt update
-      apt-get dist-upgrade -y
-      apt autoremove -y
-      apt clean
-    '
-  else
-    echo "Dunno how to obnovit"
-  fi
-}
+alias install-new-ssl='sudo apt install libcurl4-openssl-dev libssh-dev libssl-dev'
+alias install-old-ssl='sudo apt install libssl1.0-dev'
+alias obnovit-apt="sudo -- sh -c 'apt update; apt upgrade -y; apt autoremove -y; apt clean'"
 
 setopt hist_ignore_all_dups
 
@@ -121,23 +102,6 @@ setopt hist_ignore_all_dups
 
 # my local binaries
 [[ -d "$HOME/.local/bin" ]] && export PATH="$PATH:$HOME/.local/bin"
-
-# rvm stuff
-#[[ -d "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin"
-#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source $HOME/.rvm/scripts/rvm
-
-# nodejs stuff
-[[ -d "$HOME/.node_modules_global" ]] && export NODE_PATH="$HOME/.node_modules_global"
-[[ -d "$HOME/.node_modules_global/bin" ]] && export PATH="$HOME/.node_modules_global/bin:$PATH"
-
-# golang stuff
-export GOPATH=$HOME/.golang
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-
-[[ -d "$HOME/.linuxbrew/bin" ]] && export PATH="$HOME/.linuxbrew/bin:$PATH"
-
-# added by travis gem
-[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
 
 if [ -d "$HOME/.rbenv" ]; then
   export PATH="$HOME/.rbenv/bin:$PATH"
@@ -148,14 +112,7 @@ fi
 [[ -d "$HOME/.asdf" ]] && source $HOME/.asdf/asdf.sh
 [[ -d "$HOME/.asdf" ]] && source $HOME/.asdf/completions/asdf.bash
 
-[[ -d "$HOME/.nvm" ]] && source $HOME/.nvm/nvm.sh
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # snap
 export PATH=$PATH:/snap/bin
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/azat/.sdkman"
-[[ -s "/home/azat/.sdkman/bin/sdkman-init.sh" ]] && source "/home/azat/.sdkman/bin/sdkman-init.sh"
 
 :
